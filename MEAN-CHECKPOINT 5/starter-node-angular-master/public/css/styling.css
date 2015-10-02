@@ -1,0 +1,60 @@
+/* This is a comment */
+
+/* You can refer to tags */
+body{
+	/* Blue background color */
+	background-color: #37aecc;
+}
+
+/* You can refer to classes if you start with a dot */
+.mainTitle{
+	/* Fancy font from Google Family */
+	font-family: 'Lobster', cursive;
+	margin-top: 20vh;
+	font-size: 5em;
+}
+
+.loginForm{
+	width  : 40vw; 
+	height : 40vh;
+	background-color: #D7D1CA;
+	border-radius: 0.7em;
+}
+
+.btn{
+	width: 30vw;
+}
+
+.formInput{
+	width: 35vw;
+
+}
+
+.chatBox{
+	width: 90vw;
+	height: 65vh;
+	background-color: #e5e5e5;
+	margin-top: 10vh;
+	box-shadow: 0.2em 0.2em 0.2em #000;
+	overflow: auto;
+
+}
+
+.navigationBar{
+	font-family: 'Lobster', cursive;
+	width: 100%;
+	height: 10vh;
+	color: #FFF;
+	background-color: rgb(51,51,51);
+	top: 0px;
+	position: fixed;
+	display: inline-block;
+}
+
+.writeHere{
+	width: 90vw;
+	box-shadow: 0.2em 0.2em 0.2em #000;
+
+}
+
+

@@ -1,0 +1,31 @@
+/* This is a comment */
+
+/* You can refer to tags */
+body{
+	/* Blue background color */
+	background-color: #37aecc;
+}
+
+/* You can refer to classes if you start with a dot */
+.mainTitle{
+	/* Fancy font from Google Family */
+	font-family: 'Lobster', cursive;
+	margin-top: 20vh;
+	font-size: 5em;
+}
+
+.loginForm{
+	width  : 40vw; 
+	height : 40vh;
+	background-color: #D7D1CA;
+	border-radius: 0.7em;
+}
+
+.btn{
+	width: 30vw;
+}
+
+.formInput{
+	width: 35vw;
+
+}

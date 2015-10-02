@@ -1,0 +1,9 @@
+CHANGES...
+ROUTES.JS
+----------
+Nerd.js -> created messages Schema!3
+Routes.js -> save messages to db and getMessages
+routes.js -> added /chat 
+routes.js -> added redirect in /login
+routes.js -> pass 2 pass1
+index.html -> changed SubmitForm url, take out action bruh

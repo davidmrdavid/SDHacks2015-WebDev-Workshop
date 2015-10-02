@@ -1,0 +1,7 @@
+CHANGES...
+ROUTES.JS
+----------
+CHANGES TO "/" directs to index
+In views/index.html -> changed link to css
+Nerd.js -> added Mongoose models
+Add MongoLab in db.js and uncomment in server

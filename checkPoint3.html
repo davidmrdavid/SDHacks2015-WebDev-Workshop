@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<!-- In head, connect your CSS files and other components-->
+	<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Linking to our CSS -->
+	<link rel="stylesheet" type="text/css" href="checkPoint3.css">
+
+	<!-- Link to google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+	<!-- Add JQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<title>I'm your tab Title</title>
+	</head>
+
+
+	<!-- In body, define the page -->
+	<body>
+		<center><h1 class="mainTitle">Swoosh</h1></center>
+		<center><h3>Chat with friends</h3></center>
+
+		<!-- Login box -->
+		<center>
+			<div class="loginForm">
+
+				<div class="formInput input-group">
+	  				<span class="input-group-addon" id="basic-addon1">Email</span>
+	  				<input type="text" class="form-control" placeholder="Enter your email" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="formInput input-group">
+	  				<span class="input-group-addon" id="basic-addon1">User</span>
+	  				<input type="text" class="form-control" placeholder="Enter your username" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="formInput input-group opt">
+	  				<span class="input-group-addon" id="basic-addon1">Pass</span>
+	  				<input type="text" class="form-control" placeholder="Enter your password" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="formInput input-group opt">
+	  				<span class="input-group-addon" id="basic-addon1">Pass</span>
+	  				<input type="text" class="form-control" placeholder="Enter your password again" aria-describedby="basic-addon1">
+				</div>
+
+
+				<button id="nextButton" class="btn btn-primary">Login</button>
+
+				<div class="other-options">
+					<a href="#" id="accountLink">Create your account</a>
+					<a href="#">Forgot your password?</a>
+				</div>
+			</div>
+		</center>
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$(".opt").hide();
+
+			});
+
+			$("#accountLink").click(function(){
+				console.log("hi");
+
+				var createAccStr = "Create Account";
+				var logInStr     = "Login";
+
+				if($("#nextButton").html() == "Login"){
+					$("#nextButton").text(createAccStr);
+					$("#accountLink").text("Already have an account?");
+					$("#nextButton").attr("class","btn btn-success");
+					$(".opt").show();
+
+				}
+				else{
+					$("#nextButton").text(logInStr);
+					$("#accountLink").text("Create your account");
+					$("#nextButton").attr("class","btn btn-primary");
+					$(".opt").hide();
+
+
+
+				}
+			});
+
+	</script>
+
+	</body>
+
+</html>

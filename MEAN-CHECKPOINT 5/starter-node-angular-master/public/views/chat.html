@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<!-- In head, connect your CSS files and other components-->
+	<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Linking to our CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/styling.css">
+
+	<!-- Link to google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+	<!-- Add JQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- Add FontAwesome CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+	<script type="text/javascript" src="./../js/jquery.form.min.js"></script>
+
+		<title>I'm your tab Title</title>
+	</head>
+
+
+	<!-- In body, define the page -->
+	<body>
+		<div class="navigationBar"><h3>&nbsp;Swoosh</h3><div id="logout"><i class="fa fa-sign-out"></i></div></div>
+		<center><h3>Chat with friends</h3></center>
+
+		<!-- CHAT box -->
+		<center><div class="chatBox">
+		</div>
+		<div class="writeHere input-group">
+     		 <input id="message"type="text" class="form-control" placeholder="Write anything...">
+     		       		<span class="input-group-btn">
+        		<button onclick="send()" class="btn btn-default" type="button"><i class="fa fa-paper-plane"></i></button>
+      		</span>
+   		 </div><!-- /input-group -->
+		</center>
+		<script type="text/javascript">
+		function send(){
+			console.log($("#message").val());
+			var text = $("#message").val();
+			$.get("/sendMessage",{ msg: text, date: new Date(), user: "justo"});
+
+		}
+		</script>
+		<script type="text/javascript">
+			setInterval(function()
+			{ 
+				console.log("aaah");
+			    $.ajax({
+			      type:"get",
+			      url:"/getMessages",
+			      datatype:"json",
+			      success:function(data)
+			      {
+			          data.sort(function(a, b){
+					    var keyA = new Date(a["messages"]["date"]),
+					 	keyB = new Date(b["messages"]["date"]);
+					    // Compare the 2 dates
+					    if(keyA < keyB) return -1;
+					    if(keyA > keyB) return 1;
+					    return 0;
+					});
+
+			          for( var index=0; index< data.length; index++){
+			          	data[index]["messages"]
+			          }
+			          //do something with response data
+			      }
+			    });
+			}, 1000);//time in milliseconds 
+		</script>
+
+	</body>
+
+</html>

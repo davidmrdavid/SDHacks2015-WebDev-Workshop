@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<!-- In head, connect your CSS files and other components-->
+	<head>
+	<!-- Add JQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Linking to our CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/styling.css">
+
+	<!-- Link to google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+
+
+	<script type="text/javascript" src="./../js/jquery.form.min.js"></script>
+
+		<title>I'm your tab Title</title>
+	</head>
+
+
+	<!-- In body, define the page -->
+	<body>
+		<center><h1 class="mainTitle">Swoosh</h1></center>
+		<center><h3>Chat with friends</h3></center>
+
+		<!-- Login box -->
+		<center>
+			<form class="loginForm">
+
+				<div class="formInput input-group  opt">
+	  				<span class="input-group-addon" id="basic-addon1">Email</span>
+	  				<input type="text" class="form-control" placeholder="Enter your email" aria-describedby="basic-addon1" name="email">
+				</div>
+
+				<div class="formInput input-group">
+	  				<span class="input-group-addon" id="basic-addon1">User</span>
+	  				<input type="text" class="form-control" placeholder="Enter your username" aria-describedby="basic-addon1" name="user">
+				</div>
+
+				<div class="formInput input-group">
+	  				<span class="input-group-addon" id="basic-addon1">Pass</span>
+	  				<input type="text" class="form-control" placeholder="Enter your password" aria-describedby="basic-addon1" name="pass1" >
+				</div>
+
+				<div class="formInput input-group opt">
+	  				<span class="input-group-addon" id="basic-addon1">Pass</span>
+	  				<input type="text" class="form-control" placeholder="Enter your password again" aria-describedby="basic-addon1" name="pass2">
+				</div>
+
+
+				<button onclick="submitForm('/login')" id="nextButton" class="btn btn-primary">Login</button>
+
+				<div class="other-options">
+					<a href="#" id="accountLink">Create your account1</a>
+					<a href="#">Forgot your password?</a>
+				</div>
+
+				<div class="alert alert-danger" role="alert">
+  				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  				<span class="sr-only">Error:</span>
+  				Enter a valid email address
+			</form>
+			</div>
+
+		</center>
+			<script type="text/javascript">
+			$(document).ready(function(){
+				$(".opt").hide();
+				$(".alert").hide();
+
+			});
+
+			$("#accountLink").click(function(){
+				console.log("hi");
+
+				var createAccStr = "Create Account";
+				var logInStr     = "Login";
+
+				if($("#nextButton").html() == "Login"){
+					$("#nextButton").text(createAccStr);
+					$("#accountLink").text("Already have an account?");
+					$("#nextButton").attr("class","btn btn-success");
+					$("#nextButton").attr("onclick","submitForm('/create')");
+					$(".opt").show();
+
+				}
+				else{
+					$("#nextButton").text(logInStr);
+					$("#accountLink").text("Create your account");
+					$("#nextButton").attr("class","btn btn-primary");
+					$("#nextButton").attr("onclick","submitForm('/login')");
+					$(".opt").hide();
+
+
+
+				}
+			});
+
+			function submitForm(url1){ 
+				console.log("========");
+				console.log(url1);
+				console.log("========");
+
+				$('.loginForm').ajaxForm({
+			        url : url1, // or whatever
+			        dataType : 'json',
+			        success : function (response) {
+			        	console.log("aaa");
+			            console.log("The server says: " + response);
+			            if(response["result"] == "failure"){
+			            	console.log("oh shit!");
+			            	$(".alert").show();
+			            }
+			            else{
+			            	window.location.href = "/chat";
+			            }
+
+			        },
+			        error: function(err){
+			        	console.log("ERR " + JSON.stringify(err));
+			        }
+		   		});
+			}
+
+
+	</script>
+
+	</body>
+
+</html>

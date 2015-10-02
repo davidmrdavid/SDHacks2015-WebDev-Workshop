@@ -1,0 +1,6 @@
+CHANGES...
+ROUTES.JS
+----------
+CHAT.HTML -> copy pasted index.html and deleted form and added chat box
+CHAT.HTML -> added banner and fontAwesome CDN
+CHAT.HTML -> add input form from bootstrap and fontAwespme Icon. Also, shadow!
