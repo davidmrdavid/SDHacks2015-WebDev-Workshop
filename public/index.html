@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My First Chatbox Application</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <style>
+    body {
+      background: #eee;
+    }
+
+    .page-width {
+      width: 600px;
+    }
+
+    .panel-chat {
+      margin: 0 auto;
+    }
+
+    .panel-chat-body {
+      height: 400px;
+      overflow: auto;
+    }
+
+    .input-send-msg {
+      margin-top: 10px;
+      float: right !important;
+    }
+
+    .message {
+      max-width: 400px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      margin: 3px;
+      padding: 3px;
+    }
+
+    .message .name {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid page-width">
+      <div class="navbar-header">
+        <div class="navbar-brand">My Chat App</div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/logout.html">
+            <span class="glyphicon glyphicon-off"></span> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-primary panel-chat page-width">
+    <div class="panel-heading">
+      Chat
+    </div>
+    <div class="panel-body panel-chat-body">
+
+    </div>
+    <div class="panel-footer">
+      <div class="input-group col-lg-12">
+        <input type="text" class="form-control" placeholder="Type your message..." id="sendMsg">
+      </div>
+      <div class="input-group col-lg-4 input-send-msg">
+        <span class="input-group-addon">Send as...</span>
+        <input type="text" class="form-control" placeholder="Name" id="username">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" id="sendBtn">Send</button>
+        </span>
+      </div>
+    </div>
+
+    <script>
+      $("#sendBtn").on("click", function (event) {
+        $("#username").parent().removeClass("has-error");
+        $("#sendMsg").parent().removeClass("has-error");
+
+        var name = $("#username").val(),
+            msg  = $("#sendMsg").val();
+
+        console.log(name);
+
+        if (name.length && msg.length) {
+          $("#sendMsg").val("");
+
+          $.ajax({
+            method  : "POST",
+            url     : "/sendMessage",
+            data    : {
+              username : name,
+              message  : msg
+            },
+            success : function (data) {
+              // do nothing (for now...)
+            }
+          });
+
+        } else {
+          if (name.length === 0) {
+            $("#username").parent().addClass("has-error");
+          }
+          if (msg.length === 0) {
+            $("#sendMsg").parent().addClass("has-error");
+          }
+        }
+      });
+
+      setInterval(function () {
+        var name = $("#username").val();
+        $.ajax({
+          method  : "GET",
+          url     : "/getMessages",
+          data    : {
+            username : name
+          },
+          success : function (data) {
+            $(".panel-chat-body").html("");
+            for (var i in data.messages) {
+              var msg = data.messages[i];
+              $(".panel-chat-body").append("<div class='message other'><span class='name'>" + msg.username + ": </span>" + msg.message + "</div>");
+            }
+            $(".panel-chat-body").scrollTop( $(".panel-chat-body")[0].scrollHeight );
+          }
+        });
+      }, 500)
+    </script>
+</body>
+</html>
